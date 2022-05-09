@@ -1,0 +1,71 @@
+{% extends 'layout.html' %} {% load static %} {% block content %}
+
+<!-- hero section -->
+<section id="contact" class="flex justify-start items-center page-section">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Estudiantes</h2>
+      <h3 class="section-subheading">Registrar nuevo estudiante</h3>
+    </div>
+    <form id="contactForm" action="{% url 'estudiantes'%}" method="POST">
+      {% csrf_token %}
+      <div class="row align-items-stretch mb-5">
+        <div class="col-xl-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre"
+            />
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="apellido"
+              name="apellido"
+              placeholder="Apellido"
+            />
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              placeholder="Correo electrónico"
+            />
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              id="carrera"
+              name="carrera"
+              placeholder="Carrera"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <button
+            class="btn btn-primary btn-xl text-uppercase"
+            id="submitButton"
+            type="submit"
+          >
+            Confirmar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
