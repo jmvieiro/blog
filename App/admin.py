@@ -4,6 +4,6 @@ from App.models import *
 
 # Register your models here.
 
-admin.site.register(Curso)
-admin.site.register(Profesor)
-admin.site.register(Estudiante)
+admin.site.register(Topic)
+admin.site.register(Post)
+admin.site.register(Author)

@@ -7520,6 +7520,10 @@ textarea.form-control-lg {
   padding-top: 3rem !important;
 }
 
+.pt-6 {
+  padding-top: 6rem !important;
+}
+
 .pe-0 {
   padding-right: 0 !important;
 }
@@ -7567,6 +7571,7 @@ textarea.form-control-lg {
 .pb-5 {
   padding-bottom: 3rem !important;
 }
+
 
 .ps-0 {
   padding-left: 0 !important;
@@ -11301,7 +11306,7 @@ p {
 }
 
 .page-section {
-  padding: .4rem 0;
+  padding: 6rem 0;
 }
 .page-section h2.section-heading, .page-section .section-heading.h2 {
   font-size: 2.5rem;

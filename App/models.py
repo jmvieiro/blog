@@ -1,25 +1,25 @@
+from turtle import title
 from django.db import models
 
 # Create your models here.
 
-class Curso(models.Model):
-    nombre = models.CharField(max_length=50)
-    camada = models.IntegerField()
+class Topic(models.Model):
+    name = models.CharField(max_length=100)
     def __str__(self):
-        return self.nombre
+        return self.name
 
-class Estudiante(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    email = models.EmailField()
-    carrera = models.CharField(max_length=100)
+class Post(models.Model):
+    title  = models.CharField(max_length=50)
+    subtitle = models.CharField(max_length=100)
+    content = models.TextField()
+    ts_created = models.DateTimeField(auto_now_add=True)    
     def __str__(self):
-        return self.nombre
+        return self.title
 
-class Profesor(models.Model):
-    nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     email = models.EmailField()
-    profesion = models.CharField(max_length=50)
+    topic = models.CharField(max_length=100)
     def __str__(self):
-        return self.nombre
+        return self.nombre + " " + self.last_name + " " + self.topic

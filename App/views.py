@@ -1,42 +1,59 @@
 from urllib import request
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import *
 
 def index(request):
-    return render(request, "index.html")
+    authors = Author.objects.all()
+    posts = Post.objects.all()
+    topics = Topic.objects.all()
+    context = {"authors": authors, "posts": posts, "topics": topics}
+    return render(request, "index.html", context)
 
-def profesores(request):
+def register(request):
+    return render(request, "register.html")
+
+def create_post(request):
     if request.method == "POST":
-        nombre = request.POST.get("nombre")
-        apellido = request.POST.get("apellido")
+        title = request.POST.get("title")
+        subtitle = request.POST.get("subtitle")
+        content = request.POST.get("content")
+        posts = Post(title = title, subtitle = subtitle, content = content)
+        posts.save()
+        return redirect("index")
+    return redirect("index")
+
+def delete_post(request, id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return redirect("index")
+
+def create_author(request):
+    if request.method == "POST":
+        name = request.POST.get("name").upper()
+        last_name = request.POST.get("last_name").upper()
         email = request.POST.get("email")
-        profesion = request.POST.get("profesion")
-        profesor = Profesor(nombre = nombre, apellido = apellido, email = email, profesion = profesion)
-        profesor.save()
-        texto = f"Profesor creado {profesor.nombre} - {profesor.apellido} - {profesor.email} - {profesor.profesion}"
-        return render(request, "profesores.html", {"texto": texto})
-    return render(request, "profesores.html")
+        topic = request.POST.get("topic")
+        author = Author(name = name, last_name = last_name, email = email, topic = topic)
+        author.save() 
+        return redirect("index")
+    return redirect("index")
 
-def estudiantes(request):
-    if request.method == "POST":
-        nombre = request.POST.get("nombre")
-        apellido = request.POST.get("apellido")
-        email = request.POST.get("email")
-        carrera = request.POST.get("carrera")
-        estudiante = Estudiante(nombre = nombre, apellido = apellido, email = email, carrera = carrera)
-        estudiante.save()
-        texto = f"Estudiante creado {estudiante.nombre} - {estudiante.apellido} - {estudiante.email} - {estudiante.carrera}"
-        return render(request, "estudiantes.html", {"texto": texto})
-    return render(request, "estudiantes.html")
+def delete_author(request, id):
+    author = Author.objects.get(id=id)
+    author.delete()
+    return redirect("index")
 
-def cursos(request):
+def create_topic(request):
     if request.method == "POST":
-        nombre = request.POST.get("nombre")
-        camada = request.POST.get("camada")
-        curso = Curso(nombre = nombre, camada = camada)
-        curso.save()
-        texto = f"Curso creado {curso.nombre} - camada {curso.camada}"   
-        return render(request, "cursos.html", {"texto": texto})
-    return render(request, "cursos.html")
+        name = request.POST.get("name")
+        topic = Topic(name = name)
+        topic.save()
+        return redirect("index")
+    return redirect("index")
+
+def delete_topic(request, id):
+    topic = Topic.objects.get(id=id)
+    topic.delete()
+    return redirect("index")

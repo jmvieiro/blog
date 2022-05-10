@@ -57,33 +57,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+  
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'profesores' %}">Profesores</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'estudiantes' %}">Estudiantes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'cursos' %}">Cursos</a>
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link btn btn-primary text-uppercase"
-                id="submitButton"
-                type="submit"
+              <a class="nav-link btn btn-primary" href="{% url 'register' %}"
+                >Registrar</a
               >
-                Registrarse
-              </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <header class="masthead">{% block content %} {% endblock %}</header>
+    {% block content %} {% endblock %}
 
     <!-- Footer-->
-    <footer class="footer py-4">
+    <footer class="footer py-4 bg-light">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-4 text-lg-start">Copyright &copy; JMV 2022</div>
