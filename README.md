@@ -30,6 +30,6 @@ Se registra el nombre del tema.
 
 ## Estructura
 
-En "/app" se encuentra la página "landing" del blog, donde se listan los temas, posts y autores.
+En "/app" se encuentra la página "landing" del blog, donde se listan los temas, posts y autores. Vista disponible en "/samples/20220510_app_.png".
 
-En "/app/register" se ingresa a una página con 3 formularios. Mediante el ingreso de los datos en cada formulario se registra el nuevo contenido del blog, que se visualiza en "/app".
+En "/app/register" se ingresa a una página con 3 formularios. Mediante el ingreso de los datos en cada formulario se registra el nuevo contenido del blog, que se visualiza en "/app". Vista disponible en "/samples/20220510_app_register_.png".
