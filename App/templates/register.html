@@ -1,79 +1,61 @@
-{% extends 'layout.html' %} {% load static %} {% block content %}
+{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
 
 <section
   id="contact"
   class="flex justify-start items-center page-section text-white bg-black"
-  style="padding-top: 9rem !important;"
+  style="padding-top: 9rem !important"
 >
   <div class="container">
     <div class="row">
-      <div class="mb-4">
-        <h2 class="section-subheading text-uppercase">nuevo autor</h2>
+      <div class="col-xl-8">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">nuevo autor</h2>
+        </div>
+        <form id="contactForm" action="{% url 'create_author'%}" method="POST">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-xl-6">{{ authorForm.name|as_crispy_field }}</div>
+            <div class="col-xl-6">
+              {{ authorForm.last_name|as_crispy_field }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-6">{{ authorForm.email|as_crispy_field }}</div>
+            <div class="col-xl-6">{{ authorForm.topic|as_crispy_field }}</div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-xl text-uppercase">
+            confirmar
+          </button>
+        </form>
       </div>
-      <form id="contactForm" action="{% url 'create_author'%}" method="POST">
-        {% csrf_token %}
-        <div class="row align-items-stretch mb-5">
+      <div class="col-xl-4">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">buscar autor</h2>
+        </div>
+        <form id="contactForm" action="{% url 'get_author'%}" method="GET">
           <div class="row">
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  name="name"
-                  placeholder="Nombre"
-                />
-              </div>
+            <div class="col-xl-7 form-group">
+              <label for="authorId">ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="authorId"
+                name="authorId"
+                placeholder="Ingrese el ID del autor."
+              />
             </div>
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="last_name"
-                  name="last_name"
-                  placeholder="Apellido"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  name="email"
-                  placeholder="Correo electrónico"
-                />
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="topic"
-                  name="topic"
-                  placeholder="Especialidad"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group">
+            <div class="col-xl-5 form-group">
+              <label>&nbsp;</label>
               <button
-                class="btn btn-primary btn-xl text-uppercase"
-                id="submitButton"
                 type="submit"
+                class="btn btn-primary btn-xl text-uppercase"
               >
-                Confirmar
+                buscar
               </button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -84,60 +66,50 @@
 >
   <div class="container">
     <div class="row">
-      <div class="mb-5">
-        <h2 class="section-subheading text-uppercase">nuevo post</h2>
-      </div>
-      <form id="contactForm" action="{% url 'create_post'%}" method="POST">
-        {% csrf_token %}
-        <div class="row align-items-stretch mb-5">
+      <div class="col-xl-8">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">nuevo post</h2>
+        </div>
+        <form id="contactForm" action="{% url 'create_post'%}" method="POST">
+          {% csrf_token %}
           <div class="row">
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="title"
-                  name="title"
-                  placeholder="Título"
-                />
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="subtitle"
-                  name="subtitle"
-                  placeholder="Subtítulo"
-                />
-              </div>
-            </div>
+            <div class="col-xl-6">{{ postForm.title|as_crispy_field }}</div>
+            <div class="col-xl-6">{{ postForm.subtitle|as_crispy_field }}</div>
           </div>
+          {{ postForm.content|as_crispy_field }}
+          <button type="submit" class="btn btn-primary btn-xl text-uppercase">
+            confirmar
+          </button>
+        </form>
+      </div>
+      <div class="col-xl-4">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">buscar post</h2>
+        </div>
+        <form id="contactForm" action="{% url 'get_post'%}" method="GET">
           <div class="row">
-            <div class="form-group">
+            <div class="col-xl-7 form-group">
+              <label for="postId">ID</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
-                id="content"
-                name="content"
-                placeholder="Contenido"
+                id="postId"
+                name="postId"
+                placeholder="Ingrese el ID del post."
               />
             </div>
-          </div>
-          <div class="row">
-            <div class="form-group">
+            <div class="col-xl-5 form-group">
+              <label>&nbsp;</label>
               <button
-                class="btn btn-primary btn-xl text-uppercase"
-                id="submitButton"
                 type="submit"
+                class="btn btn-primary btn-xl text-uppercase"
               >
-                Confirmar
+                buscar
               </button>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -148,32 +120,45 @@
 >
   <div class="container">
     <div class="row">
-      <div class="mb-5">
-        <h2 class="section-subheading text-uppercase">nuevo tema</h2>
-      </div>
-      <form id="contactForm" action="{% url 'create_topic'%}" method="POST">
-        {% csrf_token %}
-        <div class="row align-items-stretch mb-5">
-          <div class="form-group">
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              placeholder="Título"
-            />
-          </div>
-          <div class="form-group">
-            <button
-              class="btn btn-primary btn-xl text-uppercase"
-              id="submitButton"
-              type="submit"
-            >
-              Confirmar
-            </button>
-          </div>
+      <div class="col-xl-8">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">nuevo tema</h2>
         </div>
-      </form>
+        <form id="contactForm" action="{% url 'create_topic'%}" method="POST">
+          {% csrf_token %} {{ topicForm.name|as_crispy_field }}
+          <button type="submit" class="btn btn-primary btn-xl text-uppercase">
+            confirmar
+          </button>
+        </form>
+      </div>
+      <div class="col-xl-4">
+        <div class="mb-4">
+          <h2 class="section-subheading text-uppercase">buscar tema</h2>
+        </div>
+        <form id="contactForm" action="{% url 'get_topic'%}" method="GET">
+          <div class="row">
+            <div class="col-xl-7 form-group">
+              <label for="topicId">ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="topicId"
+                name="topicId"
+                placeholder="Ingrese el ID del tema."
+              />
+            </div>
+            <div class="col-xl-5 form-group">
+              <label>&nbsp;</label>
+              <button
+                type="submit"
+                class="btn btn-primary btn-xl text-uppercase"
+              >
+                buscar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </section>

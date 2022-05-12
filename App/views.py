@@ -2,7 +2,10 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
+from App.forms import AuthorForm, PostForm, TopicForm
+
 from .models import *
+
 
 def index(request):
     authors = Author.objects.all()
@@ -11,49 +14,96 @@ def index(request):
     context = {"authors": authors, "posts": posts, "topics": topics}
     return render(request, "index.html", context)
 
+
 def register(request):
-    return render(request, "register.html")
+    authorForm = AuthorForm()
+    postForm = PostForm()
+    topicForm = TopicForm()
+    return render(request, "register.html", {"authorForm": authorForm, "postForm": postForm, "topicForm": topicForm})
+
 
 def create_post(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        subtitle = request.POST.get("subtitle")
-        content = request.POST.get("content")
-        posts = Post(title = title, subtitle = subtitle, content = content)
-        posts.save()
-        return redirect("index")
+    form = PostForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        title = data.get("title")
+        subtitle = data.get("subtitle")
+        content = data.get("content")
+        post = Post(title=title, subtitle=subtitle, content=content)
+        post.save()
     return redirect("index")
+
 
 def delete_post(request, id):
     post = Post.objects.get(id=id)
     post.delete()
     return redirect("index")
 
+
 def create_author(request):
-    if request.method == "POST":
-        name = request.POST.get("name").upper()
-        last_name = request.POST.get("last_name").upper()
-        email = request.POST.get("email")
-        topic = request.POST.get("topic")
-        author = Author(name = name, last_name = last_name, email = email, topic = topic)
-        author.save() 
-        return redirect("index")
+    form = AuthorForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        name = data.get("name").upper()
+        last_name = data.get("last_name").upper()
+        email = data.get("email")
+        topic = data.get("topic")
+        author = Author(name=name, last_name=last_name,
+                        email=email, topic=topic)
+        author.save()
     return redirect("index")
+
 
 def delete_author(request, id):
     author = Author.objects.get(id=id)
     author.delete()
     return redirect("index")
 
+
 def create_topic(request):
-    if request.method == "POST":
-        name = request.POST.get("name")
-        topic = Topic(name = name)
+    form = TopicForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        name = data.get("name")
+        topic = Topic(name=name)
         topic.save()
-        return redirect("index")
     return redirect("index")
+
 
 def delete_topic(request, id):
     topic = Topic.objects.get(id=id)
     topic.delete()
     return redirect("index")
+
+
+def get_author(request):
+    if request.GET.get("authorId"):
+        id = request.GET.get("authorId")
+        try:
+            author = Author.objects.get(id=request.GET.get("authorId"))
+            return render(request, "result.html", {"author": author})
+        except Author.DoesNotExist:
+            return render(request, "result.html", {"response": f"No existe autor para el ID #{id} ingresado."})
+    return render(request, "result.html", {"response": "No se ingresó el ID del autor."})
+
+
+def get_post(request):
+    if request.GET.get("postId"):
+        id = request.GET.get("postId")
+        try:
+            post = Post.objects.get(id=request.GET.get("postId"))
+            return render(request, "result.html", {"post": post})
+        except Post.DoesNotExist:
+            return render(request, "result.html", {"response": f"No existe post para el ID #{id} ingresado."})
+    return render(request, "result.html", {"response": "No se ingresó el ID del post."})
+
+
+def get_topic(request):
+    if request.GET.get("topicId"):
+        id = request.GET.get("topicId")
+        try:
+            topic = Topic.objects.get(id=request.GET.get("topicId"))
+            return render(request, "result.html", {"topic": topic})
+        except Topic.DoesNotExist:
+            return render(request, "result.html", {"response": f"No existe tema para el ID #{id} ingresado."})
+    return render(request, "result.html", {"response": "No se ingresó el ID del tema."})

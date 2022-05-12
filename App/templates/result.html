@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block content %}
+<section
+  id="contact"
+  class="flex justify-start items-center page-section text-white bg-black"
+  style="padding-top: 9rem !important"
+>
+  <div class="container">
+    <div class="row">
+      {% if response %}
+      <h3 class="text-muted">{{ response }} - {{ id }}</h3>
+      {% else %} {% if author %}
+      <h3 class="text-white">
+        Se encontró al autor "{{ author.name }} {{ author.last_name }}" con el
+        ID {{ author.id }}.
+      </h3>
+      {% endif %} {% if topic %}
+      <h3 class="text-white">
+        Se encontró al tema "{{ topic.name }}" con el ID {{ topic.id }}.
+      </h3>
+      {% endif %} {% if post %}
+      <h3 class="text-white">
+        Se encontró al post "{{ post.title }}" con el ID {{ post.id }}.
+      </h3>
+      {% endif %} {% endif %}
+
+      <div class="col-2">
+        <a class="btn btn-primary" href="{% url 'register' %}">Volver</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

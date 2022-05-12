@@ -22,4 +22,4 @@ class Author(models.Model):
     email = models.EmailField()
     topic = models.CharField(max_length=100)
     def __str__(self):
-        return self.nombre + " " + self.last_name + " " + self.topic
+        return self.name + " " + self.last_name + " " + self.topic
