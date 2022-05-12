@@ -33,13 +33,13 @@ Para la realización del proyecto, se instalaron las siguientes dependencias:
 ### Vistas
 
 - index: pantalla principal que invoca el contenido de la landing page: autores, posts y temas. Utiliza el template "index.html".
-- register: pantalla
-- create_author: crea un nuevo autor. Es invocado desde un formulario POST.
-- create_post: crea un nuevo post. Es invocado desde un formulario POST.
-- create_topic: crea un nuevo tema. Es invocado desde un formulario POST.
-- get_author: obtiene un autor por ID. Es invocado desde un formulario GET.
-- get_post: obtiene un post por ID. Es invocado desde un formulario GET.
-- get_topic: obtiene un tema por ID. Es invocado desde un formulario GET.
+- register: pantalla de presentación de los formularios POST y GET. Utiliza el template "register.html".
+- create_author: crea un nuevo autor. Es invocado desde un formulario POST, dentro del "register.html".
+- create_post: crea un nuevo post. Es invocado desde un formulario POST, dentro del "register.html".
+- create_topic: crea un nuevo tema. Es invocado desde un formulario POST, dentro del "register.html".
+- get_author: obtiene un autor por ID. Es invocado desde un formulario GET, dentro del "register.html".
+- get_post: obtiene un post por ID. Es invocado desde un formulario GET, dentro del "register.html".
+- get_topic: obtiene un tema por ID. Es invocado desde un formulario GET, dentro del "register.html".
 
 ### Estructura
 
