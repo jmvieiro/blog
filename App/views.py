@@ -34,12 +34,6 @@ def create_post(request):
     return redirect("index")
 
 
-def delete_post(request, id):
-    post = Post.objects.get(id=id)
-    post.delete()
-    return redirect("index")
-
-
 def create_author(request):
     form = AuthorForm(request.POST)
     if form.is_valid():
@@ -54,12 +48,6 @@ def create_author(request):
     return redirect("index")
 
 
-def delete_author(request, id):
-    author = Author.objects.get(id=id)
-    author.delete()
-    return redirect("index")
-
-
 def create_topic(request):
     form = TopicForm(request.POST)
     if form.is_valid():
@@ -67,12 +55,6 @@ def create_topic(request):
         name = data.get("name")
         topic = Topic(name=name)
         topic.save()
-    return redirect("index")
-
-
-def delete_topic(request, id):
-    topic = Topic.objects.get(id=id)
-    topic.delete()
     return redirect("index")
 
 
