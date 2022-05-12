@@ -38,8 +38,8 @@ Para la realización del proyecto, se instalaron las siguientes dependencias:
 - create_post: crea un nuevo post. Es invocado desde un formulario POST.
 - create_topic: crea un nuevo tema. Es invocado desde un formulario POST.
 - get_author: obtiene un autor por ID. Es invocado desde un formulario GET.
-- get_post: obtiene un autor por ID. Es invocado desde un formulario GET.
-- get_topic: obtiene un autor por ID. Es invocado desde un formulario GET.
+- get_post: obtiene un post por ID. Es invocado desde un formulario GET.
+- get_topic: obtiene un tema por ID. Es invocado desde un formulario GET.
 
 ### Estructura
 
