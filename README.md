@@ -43,16 +43,16 @@ Para la realización del proyecto, se instalaron las siguientes dependencias:
 
 ### Estructura
 
-- /app: se encuentra la página "landing" del blog, donde se listan los temas, posts y autores.
-- /app/register - POST forms: incluye tres formularios para el ingreso de los datos de cada clase del modelo: autores, posts o temas. Se utiliza el método "POST". En cada formulario se registra el nuevo contenido del blog, que se visualiza en "/app".
-- /app/register - GET forms: incluye tres formularios para buscar los autores, posts o temas por ID. Se utiliza el método "GET".
-- /app/result: se visualiza el resultado de la búsqueda realizada mediante los formularios "GET". Si no encuentra el registro, muestra un mensaje indicando tal situación.
+- /App: se encuentra la página "landing" del blog, donde se listan los temas, posts y autores.
+- /App/register - POST forms: incluye tres formularios para el ingreso de los datos de cada clase del modelo: autores, posts o temas. Se utiliza el método "POST". En cada formulario se registra el nuevo contenido del blog, que se visualiza en "/app".
+- /App/register - GET forms: incluye tres formularios para buscar los autores, posts o temas por ID. Se utiliza el método "GET".
+- /App/result: se visualiza el resultado de la búsqueda realizada mediante los formularios "GET". Si no encuentra el registro, muestra un mensaje indicando tal situación.
 
 ### Samples
 
 Se dejan a disposición tres imágenes con las pantallas del sistema.
 
-- /samples/20220511_app_.png
-- /samples/20220511_app_register_.png
-- /samples/20220511_app_result_.png
+- /App/samples/20220511_app_.png
+- /App/samples/20220511_app_register_.png
+- /App/samples/20220511_app_result_.png
 
